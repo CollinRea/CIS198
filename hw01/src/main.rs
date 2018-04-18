@@ -1,7 +1,7 @@
 pub mod problem1;
-pub mod problem2;
-pub mod problem3;
-pub mod problem4;
+// pub mod problem2;
+// pub mod problem3;
+// pub mod problem4;
 
 fn main() {
     println!("Hello, world!");
@@ -10,9 +10,9 @@ fn main() {
 #[cfg(test)] 
 
 use problem1::{sum, dedup, filter};
-use problem2::mat_mult;
-use problem3::sieve;
-use problem4::{hanoi, Peg};
+// use problem2::mat_mult;
+// use problem3::sieve;
+// use problem4::{hanoi, Peg};
 
 //
 // Problem 1
@@ -34,10 +34,20 @@ fn test_dedup_small() {
     assert_eq!(dedup(&vs), vec![1,2,3,4]);
 }
 
-// Part 3
+#[test]
+fn test_dedup_medium() {
+    let vs = vec![1,2,2,3,4,1,6,5,4,3,6,5,1,2];
+    assert_eq!(dedup(&vs), vec![1,2,3,4,6,5]);
+}
+
+// // Part 3
 
 fn even_predicate(x: i32) -> bool {
     (x % 2) == 0
+}
+
+fn odd_predicate(x: i32) -> bool {
+    (x % 2) != 0
 }
 
 #[test]
@@ -46,41 +56,47 @@ fn test_filter_small() {
     assert_eq!(filter(&vs, &even_predicate), vec![2,4]);
 }
 
-//
-// Problem 2
-//
-
 #[test]
-fn test_mat_mult_identity() {
-    let mut mat1 = vec![vec![0.;3]; 3];
-    for i in 0..mat1.len() {
-        mat1[i][i] = 1.;
-    }
-    let mat2 = vec![vec![5.;3]; 3];
-    let result = mat_mult(&mat1, &mat2);
-    for i in 0..result.len() {
-        for j in 0..result[i].len() {
-            assert_eq!(result[i][j], mat2[i][j]);
-        }
-    }
+fn test_filter_medium() {
+    let vs = vec![1,2,3,4,5,6,7,8,9];
+    assert_eq!(filter(&vs, &odd_predicate), vec![1,3,5,7,9]);
 }
 
-//
-// Problem 3
-//
+// //
+// // Problem 2
+// //
 
-#[test]
-fn test_sieve_basic() {
-    assert_eq!(vec![2,3,5,7,11], sieve(12));
-}
+// #[test]
+// fn test_mat_mult_identity() {
+//     let mut mat1 = vec![vec![0.;3]; 3];
+//     for i in 0..mat1.len() {
+//         mat1[i][i] = 1.;
+//     }
+//     let mat2 = vec![vec![5.;3]; 3];
+//     let result = mat_mult(&mat1, &mat2);
+//     for i in 0..result.len() {
+//         for j in 0..result[i].len() {
+//             assert_eq!(result[i][j], mat2[i][j]);
+//         }
+//     }
+// }
 
-//
-// Problem 4
-//
+// //
+// // Problem 3
+// //
 
-#[test]
-fn test_hanoi_1_disks() {
-    let result = hanoi(1, Peg::A, Peg::B, Peg::C);
-    assert_eq!(vec![(Peg::A, Peg::C)], result);
-    assert_eq!(1, result.len());
-}
+// #[test]
+// fn test_sieve_basic() {
+//     assert_eq!(vec![2,3,5,7,11], sieve(12));
+// }
+
+// //
+// // Problem 4
+// //
+
+// #[test]
+// fn test_hanoi_1_disks() {
+//     let result = hanoi(1, Peg::A, Peg::B, Peg::C);
+//     assert_eq!(vec![(Peg::A, Peg::C)], result);
+//     assert_eq!(1, result.len());
+// }
