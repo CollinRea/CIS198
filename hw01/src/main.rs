@@ -5,7 +5,7 @@ pub mod problem3;
 
 fn main() {
     println!("Hello, world!");
-    println!("Primes up to 120 = {:?}", sieve(120));
+    println!("Primes up to 220 = {:?}", sieve(220));
 }
 
 #[cfg(test)] 
@@ -121,9 +121,9 @@ fn test_sieve_basic2() {
 // // Problem 4
 // //
 
-// #[test]
-// fn test_hanoi_1_disks() {
-//     let result = hanoi(1, Peg::A, Peg::B, Peg::C);
-//     assert_eq!(vec![(Peg::A, Peg::C)], result);
-//     assert_eq!(1, result.len());
-// }
+#[test]
+fn test_hanoi_1_disks() {
+    let result = hanoi(1, Peg::A, Peg::B, Peg::C);
+    assert_eq!(vec![(Peg::A, Peg::C)], result);
+    assert_eq!(1, result.len());
+}
