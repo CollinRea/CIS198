@@ -1,6 +1,6 @@
 pub mod problem1;
 pub mod problem2;
-// pub mod problem3;
+pub mod problem3;
 // pub mod problem4;
 
 fn main() {
@@ -11,7 +11,7 @@ fn main() {
 
 use problem1::{sum, dedup, filter};
 use problem2::mat_mult;
-// use problem3::sieve;
+use problem3::sieve;
 // use problem4::{hanoi, Peg};
 
 //
@@ -106,10 +106,10 @@ fn test_mat_mult_panic3() {
 // // Problem 3
 // //
 
-// #[test]
-// fn test_sieve_basic() {
-//     assert_eq!(vec![2,3,5,7,11], sieve(12));
-// }
+#[test]
+fn test_sieve_basic() {
+    assert_eq!(vec![2,3,5,7,11], sieve(12));
+}
 
 // //
 // // Problem 4
