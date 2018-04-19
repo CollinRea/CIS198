@@ -21,8 +21,8 @@ pub fn sieve(n: u32) -> Vec<u32> {
   }
   let (primes,_): (Vec<_>, Vec<_>)  = bool_vec.into_iter()
     .enumerate()
-    .map(|(i,v)|(i as u32,v))
     .filter(|&(_i,b)| b )
+    .map(|(i,v)|(i as u32,v))
     .unzip();
   primes
 }
