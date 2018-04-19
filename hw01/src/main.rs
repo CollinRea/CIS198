@@ -5,6 +5,7 @@ pub mod problem3;
 
 fn main() {
     println!("Hello, world!");
+    println!("Primes up to 120 = {:?}", sieve(120));
 }
 
 #[cfg(test)] 
@@ -109,6 +110,11 @@ fn test_mat_mult_panic3() {
 #[test]
 fn test_sieve_basic() {
     assert_eq!(vec![2,3,5,7,11], sieve(12));
+}
+
+#[test]
+fn test_sieve_basic2() {
+    assert_eq!(vec![2,3,5,7,11,13,17,19,23,29], sieve(30));
 }
 
 // //
