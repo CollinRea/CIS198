@@ -18,17 +18,12 @@ pub type Move = (Peg, Peg);
 pub fn hanoi(num_discs: u32, src: Peg, aux: Peg, dst: Peg) -> Vec<Move> {
   let mut moves: Vec<Move> = Vec::new();
   let current_move = (src,dst);
-
   if num_discs > 1 {
-    let mut m1 = hanoi(num_discs-1, src, dst, aux);
-    moves.append(&mut m1);
+    moves.append(&mut hanoi(num_discs-1, src, dst, aux));
   }
-
   moves.push(current_move);
-
   if num_discs > 1 {
-    let mut m2 = hanoi(num_discs-1, aux, src, dst);
-    moves.append(&mut m2);
+    moves.append(&mut hanoi(num_discs-1, aux, src, dst));
   }
   moves
 }
