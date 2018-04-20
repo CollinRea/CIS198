@@ -16,6 +16,19 @@ pub type Move = (Peg, Peg);
 /// Solves for the sequence of moves required to move all discs from `src` to
 /// `dst`.
 pub fn hanoi(num_discs: u32, src: Peg, aux: Peg, dst: Peg) -> Vec<Move> {
-    // TODO
-    unimplemented!();
+  let mut moves: Vec<Move> = Vec::new();
+  let current_move = (src,dst);
+
+  if num_discs > 1 {
+    let mut m1 = hanoi(num_discs-1, src, dst, aux).clone();
+    moves.append(&mut m1);
+  }
+
+  moves.push(current_move);
+
+  if num_discs > 1 {
+    let mut m2 = hanoi(num_discs-1, aux, src, dst).clone();
+    moves.append(&mut m2);
+  }
+  moves
 }

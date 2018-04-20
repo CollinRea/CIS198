@@ -1,7 +1,7 @@
 pub mod problem1;
 pub mod problem2;
 pub mod problem3;
-// pub mod problem4;
+pub mod problem4;
 
 fn main() {
     println!("Hello, world!");
@@ -13,7 +13,7 @@ fn main() {
 use problem1::{sum, dedup, filter};
 use problem2::mat_mult;
 use problem3::sieve;
-// use problem4::{hanoi, Peg};
+use problem4::{hanoi, Peg};
 
 //
 // Problem 1
@@ -126,4 +126,11 @@ fn test_hanoi_1_disks() {
     let result = hanoi(1, Peg::A, Peg::B, Peg::C);
     assert_eq!(vec![(Peg::A, Peg::C)], result);
     assert_eq!(1, result.len());
+}
+
+#[test]
+fn test_hanoi_2_disks() {
+    let result = hanoi(2, Peg::A, Peg::B, Peg::C);
+    assert_eq!(vec![(Peg::A, Peg::B),(Peg::A, Peg::C), (Peg::B, Peg::C)], result);
+    assert_eq!(3, result.len());
 }
