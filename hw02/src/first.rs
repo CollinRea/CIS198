@@ -1,4 +1,4 @@
-#[derive(Debug)]
+#[derive(Debug, PartialEq)]
 pub struct BST {
   root: Link,
 }
@@ -9,15 +9,29 @@ impl BST {
   }
 }
 
-#[derive(Debug)]
-pub enum Link {
+#[derive(Debug, PartialEq)]
+enum Link {
   Empty,
   More(Box<Node>),
 }
 
-#[derive(Debug)]
-pub struct Node {
+#[derive(Debug, PartialEq)]
+struct Node {
   val: i32,
   left: Link,
   right: Link,
+}
+
+
+-----  TESTS -----
+
+#[cfg(test)]
+mod test {
+  use super::*;
+
+  #[test]
+  fn run_new() {
+    let test_bst = BST { root: Link::Empty };
+    assert_eq!(test_bst, BST::new());
+  }
 }
