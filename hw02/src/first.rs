@@ -17,7 +17,7 @@
 
 // ----- DATA STRUCTURE -----
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Clone)]
 pub struct BST {
   root: Link,
 }
@@ -109,10 +109,13 @@ mod test {
     let mut test_bst = BST::new();
     assert!(test_bst.insert(1));
     assert_ne!(empty_bst, test_bst);
+    
     // Make sure if you try to enter same value, it returns false
     // And BST is unchanged
     test_bst.insert(2);
+    let prev_bst = test_bst.clone();
     assert!(!test_bst.insert(2));
+    assert_eq!(prev_bst, test_bst);
   }
 
   #[test]
