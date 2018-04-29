@@ -74,32 +74,18 @@ impl Link {
     prev_link != *self
   }
   fn search(&self, v: i32) -> bool {
-    let mut found: bool = false;
     match self {
-      Link::Empty => found = false,
+      Link::Empty => false,
       Link::More(box_node) => {
-        if box_node.val == v {
-          found = true
-        }
-        if box_node.val > v {
-          box_node.left.search(v);
-        }
-        if box_node.val < v {
-          box_node.right.search(v);
+        match box_node.val == v {
+          false if box_node.val > v => box_node.left.search(v),
+          false if box_node.val < v => box_node.right.search(v),
+          _ => true,
         }
       },
-    };
-    found
+    }
   }
 }
-
-// link.search(i32) -> bool (~15 lines)
-//     If searching an empty link, return false; the element can't be found.
-//     If searching a non-empty link:
-//         return true if the element is in this node; otherwise,
-//         recurse to the left if the target value is less than the node's value
-//         recurse to the right if the target value is greater than the node's value
-
 
 // ----- TESTS -----
 
@@ -133,7 +119,15 @@ mod test {
   #[test]
   fn test_search() {
     let mut bst = BST::new();
+   
+    bst.insert(7);
     bst.insert(1);
+    bst.insert(3);
+    bst.insert(4);
+    bst.insert(9);
+    bst.insert(10);
+    bst.insert(11);
+    println!("{:#?}", bst.search(1));
     assert!(bst.search(1));
     assert!(!bst.search(2));
   }
