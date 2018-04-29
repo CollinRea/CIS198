@@ -73,6 +73,24 @@ impl Link {
     };
     prev_link != *self
   }
+  fn search(&self, v: i32) -> bool {
+    let mut found: bool = false;
+    match self {
+      Link::Empty => found = false,
+      Link::More(box_node) => {
+        if box_node.val == v {
+          found = true
+        }
+        if box_node.val > v {
+          box_node.left.search(v);
+        }
+        if box_node.val < v {
+          box_node.right.search(v);
+        }
+      },
+    };
+    found
+  }
 }
 
 // link.search(i32) -> bool (~15 lines)
@@ -82,12 +100,6 @@ impl Link {
 //         recurse to the left if the target value is less than the node's value
 //         recurse to the right if the target value is greater than the node's value
 
-impl Link {
-  fn search(&self, v: i32) -> bool {
-    false
-  }
-}
-
 
 // ----- TESTS -----
 
@@ -96,7 +108,7 @@ mod test {
   use super::*;
 
   #[test]
-  fn run_new() {
+  fn test_new() {
     let test_bst = BST { root: Link::Empty };
     let new_bst = BST::new();
     assert_eq!(test_bst, new_bst);
@@ -123,5 +135,6 @@ mod test {
     let mut bst = BST::new();
     bst.insert(1);
     assert!(bst.search(1));
+    assert!(!bst.search(2));
   }
 }
